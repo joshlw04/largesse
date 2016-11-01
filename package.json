@@ -2,10 +2,10 @@
   "name": "largesse",
   "version": "1.0.0",
   "description": "WDI Project 4",
-  "main": "index.js",
+  "main": "index.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --hot --progress --colors"
+    "start": "webpack-dev-server --hot --progress --colors"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,67 @@
+body {
+  background-color: lightpink;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+background-color:#4CAF50;
+}
+
+#button_container {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10em;
+}
+
+.btn {
+  background: #19a3ff;
+  background-image: linear-gradient(to bottom, #19a3ff, #0b1b26);
+  border-radius: 100px;
+  text-shadow: 5px 4px 8px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 60px;
+  padding: 65px;
+  text-decoration: none;
+  margin: 0 auto;
+}
+
+.btn:hover {
+  background: #8aa9bd;
+  background-image: linear-gradient(to bottom, #8aa9bd, #3e4a52);
+  text-decoration: none;
+}
+
+.charity_container {
+  width: 70%;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.charity_div {
+  line-height: 1.8em;
+}
