@@ -7,7 +7,7 @@ class Api::V1::ClicksController < ApplicationController
  def create
    click = Click.new(click_params)
    if click.save
-     render json: click, status: :create
+     render json: click, status: :created
    else
      render json: click.errors, status: :unprocessable_entity
    end
@@ -16,7 +16,7 @@ class Api::V1::ClicksController < ApplicationController
  private
 
  def click_params
-   params.require(:click).permit(:location)
+   params.require(:click).permit(:user_id, :location)
  end
 
 end
