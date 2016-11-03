@@ -9,6 +9,8 @@
 - Ionic/React Native for iPhone/Android (Phase 3/4)
 
 ###MVP/Phase 1:
+- Users will be able to register, log in, and log out of the app, allowing them to have a personalized experience.
+
 - Users will be able to click a button, signifying when they were approached/had the opportunity to donate money, but did not.
 
 - Users will be able to register and log in to see each click/when they should have donated, and be able to edit where they were when they were approached

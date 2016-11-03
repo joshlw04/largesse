@@ -2,12 +2,17 @@ body {
   background-color: lightpink;
 }
 
-ul {
+#nav_bar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+}
+
+.tip_list {
+  list-style-type: none;
+  display: block;
 }
 
 li {
@@ -30,11 +35,15 @@ a:hover:not(.active) {
 background-color:#4CAF50;
 }
 
+.welcome_button {
+
+}
+
 #button_container {
   width: 70%;
   margin: 0 auto;
   text-align: center;
-  padding: 10em;
+  padding: 8em;
 }
 
 .btn {

@@ -5,7 +5,7 @@ class Button extends Component {
   constructor() {
     super();
     this.state = {
-      loggedInUser: null,
+      clicks: null,
     };
     this.buttonClick = this.buttonClick.bind(this);
   }
@@ -16,12 +16,19 @@ class Button extends Component {
            .then((response) => {
              console.log(response.body);
            });
+    this.setState({ clicks: this.clicks + 1 });
+    console.log(this.state.clicks);
   }
 
   render() {
     return (
-      <div id="button_container">
-        <button className="btn" onClick={this.buttonClick}>Feeling Guilty?</button>
+      <div>
+        <div id="button_container">
+          <button className="btn" onClick={this.buttonClick}>Feeling Guilty?</button>
+        </div>
+        {/* <div>
+          <Counter />
+        </div> */}
       </div>
     );
   }
