@@ -74,3 +74,26 @@ background-color:#4CAF50;
 .charity_div {
   line-height: 1.8em;
 }
+
+html { box-sizing: border-box; }
+
+*, *:before, *:after { box-sizing: inherit; }
+
+.input {
+    width: 100%;
+    padding: 1.5em;
+    font-size: 1em;
+}
+
+.btn {
+    background-color: #f4f4f4;
+    width: 100%;
+    padding: 1.5em;
+    font-size: 1em;
+}
+
+select {
+    width: 100%;
+    padding: 1.5em;
+    font-size:2em;    
+}

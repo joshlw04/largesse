@@ -1,39 +1,44 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-
-import Tips from './Tips.jsx';
-import Button from './Button.jsx';
-// import Register from './Auth/Register.jsx';
-// import Login from './Auth/Login.jsx';
-
+import request from 'superagent';
 import firebase from '../../../firebase.config.js';
-
-const propTypes = {
-  router: React.PropTypes.object,
-};
+import WelcomeSlideshow from './WelcomeSlideshow.jsx';
 
 class Welcome extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
-      password: '',
-      isLoggedIn: (firebase.auth().currentUser !== null),
+      isLoggedIn: (firebase.auth().currentUser !== null), // this will be either true or false
     };
-    this.signOutUser = this.signOutUser.bind(this);
-  }
 
-// Can only update a mounted or mounting component. This usually means you called setState() on an unmounted component. This is a no-op.
+    this.getUsers = this.getUsers.bind(this);
+  }
   componentWillMount() {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
-      this.setState({ loggedIn: (firebaseUser !== null) });
-      // console.log(firebaseUser);
+      this.setState({ isLoggedIn: (firebaseUser !== null) });
       if (firebaseUser) {
         console.log('Logged IN', firebaseUser.uid);
       } else {
         console.log('Not logged in');
       }
     });
+  }
+
+  getUsers() {
+    request.post('http://localhost:3000/api/v1/users')
+           .send(
+      { user:
+      { first_name: 'Hammy',
+        last_name: 'Chicken',
+        email: 'josh@chicken.com',
+        total_clicks: 0,
+        cost_per_click: 1,
+        payment_type: 'VISA',
+        payment_last_four: 7889,
+        charity_id: 1 } })
+          .then((response) => {
+            console.log(response.body);
+          });
   }
 
   signOutUser() {
@@ -46,27 +51,24 @@ class Welcome extends Component {
   }
 
   render() {
-    console.log(this.state.isLoggedIn);
-
     return (
       <div>Largess
-        <Tips />
+        <WelcomeSlideshow />
+        <button onClick={this.getUsers}>Post to Users</button>
         {
           this.state.isLoggedIn === false ?
             <div>
-              <Link to="/login" className="welcome_button" role="button">Login</Link>
-              <Link to="/register" role="button">Register</Link>
+              <Link to="login">Login</Link>
+              <Link to="/register">Register</Link>
             </div>
           :
             <div>
-              <Link to="/" onClick={this.signOutUser} role="button">Log Out</Link>
+              <Link to="/" onClick={this.signOutUser}>Log Out</Link>
             </div>
         }
       </div>
     );
   }
 }
-
-Welcome.propTypes = propTypes;
 
 export default Welcome;

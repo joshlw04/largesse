@@ -6,24 +6,27 @@ class Charity extends Component {
     super();
   }
 
-  componentDidMount() {
-    request.get('http://localhost:3000api/v1/charities')
-           .then((charities) => {
-             console.log(charities);
-           });
-  }
-
   render() {
+    request.get('http://localhost:3000/api/v1/charities')
+           .then((charities) => {
+               return charityList;
+             })
+            .then((charities) => {
+              let charityList = [];
+              charityList = charities.map((charity, idx) => {
+                 <div className="charity_div" key={idx}>
+                   <h2 className="charity_header">{charity.name}</h2>
+                   <p className="charity_mission">{charity.mission}</p>
+                   <h3 className="charity_address">{charity.address}</h3>
+                 </div>;
+              })
+           });
     return (
-      <div className="charity_container">
-        <div className="charity_div">
-          <h2 className="charity_header">Red Cross</h2>
-          <p className="charity_mission">The Red Cross, blah blah blah blah balh.lsdjf sldkfjwofjlsjfl slkdfj alskdjfslkdfj sldkfj lskdfj lskdf lsdfj lsdjf oweij2slfksdls lisdjlsdk fjosdj lsk josdj lskdj vlskdj fowiedj osdfj a;osdcjvzcnv oasfgj skchv osnva; sodfja; osdf s wodfj ;SOdf ;Svnslzn;S dv ; Sdnv;sd ;sdlva;osdfhg;a sfmcv a;</p>
-          <h3 className="charity_address">Address 123 main street</h3>
-        </div>
+      <div>
+        {charityList}
       </div>
     );
   }
-};
+}
 
 export default Charity;

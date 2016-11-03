@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
+import request from 'superagent';
 import firebase from '../../../../firebase.config.js';
 
 const propTypes = {
@@ -12,17 +13,13 @@ class Register extends Component {
     this.state = {
       username: '',
       password: '',
+      first_name: '',
+      last_name: '',
+      firebase_uid: '',
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
-  }
-
-  handleChange(e) {
-    const stateObj = {};
-    const stateKey = e.target.name;
-    stateObj[stateKey] = e.target.value;
-    this.setState(stateObj);
+    this.createUsers = this.createUsers.bind(this);
   }
 
   handleRegisterSubmit() {
@@ -32,9 +29,41 @@ class Register extends Component {
       .catch((err) => {
         console.log(err);
       })
-      .then(() => {
-        this.props.router.push('/dashboard')
-      })
+      .then((firebaseUserData) => {
+        this.setState({ firebase_uid: firebaseUserData.uid });
+        this.createUsers();
+        this.props.router.push('/home');
+      });
+  }
+
+  handleChange(e) {
+    const stateObj = {};
+    const stateKey = e.target.name;
+    stateObj[stateKey] = e.target.value;
+    this.setState(stateObj);
+    console.log('set state in login');
+  }
+
+  createUsers() {
+    const username = this.state.username;
+    const first_name = this.state.first_name;
+    const last_name = this.state.last_name;
+    const firebase_uid = this.state.firebase_uid;
+    request.post('http://localhost:3000/api/v1/users')
+           .send(
+      { user:
+      { first_name: first_name,
+        last_name: last_name,
+        email: username,
+        total_clicks: 0,
+        cost_per_click: 1,
+        payment_type: 'VISA',
+        payment_last_four: 7889,
+        firebase_uid: firebase_uid,
+        charity_id: 1 } })
+          .then((response) => {
+            console.log(response.body);
+          });
   }
 
   render() {
@@ -42,6 +71,19 @@ class Register extends Component {
       <div>
         <div id="register-form">
           <div>
+           <input
+            name="first_name"
+            onChange={this.handleChange}
+            type="text"
+            placeholder="First Name"
+          />
+          <input
+            name="last_name"
+            onChange={this.handleChange}
+            type="text"
+            placeholder="Last Name"
+          />
+
             <input
               name="username"
               onChange={this.handleChange}

@@ -18,18 +18,18 @@ class Nav extends Component {
         {
         this.state.isLoggedIn === true ?
           <ul id="nav_bar">
-            <li><Link to="/">Home</Link></li>
+            <li><Link to="/">Welcome</Link></li>
             <li><Link to="/logout">Log Out</Link></li>
-            <li><Link to="/button">Feeling Guilty?</Link></li>
+            <li><Link to="/home">Feeling Guilty?</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/charity">Charity</Link></li>
           </ul>
           :
           <ul id="nav_bar">
-            <li><Link to="/">Home</Link></li>
+            <li><Link to="/">Welcome</Link></li>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Register</Link></li>
-            <li><Link to="/button">Feeling Guilty?</Link></li>
+            <li><Link to="/home">Feeling Guilty?</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/charity">Charity</Link></li>
           </ul>

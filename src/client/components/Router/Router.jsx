@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 import Nav from '../../components/Nav.jsx';
-import Button from '../../components/Button.jsx';
+import Home from '../../components/Home.jsx';
 import Login from '../Auth/Login.jsx';
 import Register from '../Auth/Register.jsx';
 import About from '../../components/About.jsx';
@@ -13,7 +13,7 @@ const routes = (
   <Router history={browserHistory}>
     <Route component={Nav}>
       <Route path="/" component={Welcome} />
-      <Route path="/button" component={Button} onEnter={requireAuth} />
+      <Route path="home" component={Home} onEnter={requireAuth} />
       <Route path="login" component={Login} />
       <Route path="register" component={Register} />
       <Route path="about" component={About} />

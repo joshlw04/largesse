@@ -7,7 +7,7 @@ class Api::V1::CharitiesController < ApplicationController
  def create
    charity = Charity.new(charity_params)
    if charity.save
-     render json: charity, status: :create
+     render json: charity, status: :created
    else
      render json: charity.errors, status: :unprocessable_entity
    end

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import firebase from '../../../../firebase.config.js';
 
-const propTypes = {
-  router: React.PropTypes.object,
-};
+// const propTypes = {
+  // router: React.PropTypes.obj,
+// };
 
 class Login extends Component {
   constructor() {
@@ -14,7 +14,7 @@ class Login extends Component {
       password: '',
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -22,19 +22,18 @@ class Login extends Component {
     const stateKey = e.target.name;
     stateObj[stateKey] = e.target.value;
     this.setState(stateObj);
-    console.log('set state in login');
   }
 
-  handleSubmit() {
+  handleLoginSubmit() {
     const { username, password } = this.state;
     firebase.auth()
     .signInWithEmailAndPassword(username, password)
     .catch((err) => {
       console.log(err);
     })
-    .then(() => {
-      console.log('push to button');
-      this.props.router.push('/button');
+    .then((response) => {
+      console.log(response);
+      this.props.router.push('/home');
     });
   }
 
@@ -59,7 +58,7 @@ class Login extends Component {
             />
           </div>
           <button
-            onClick={this.handleSubmit}
+            onClick={this.handleLoginSubmit}
           >Login</button>
         </div>
       </div>
@@ -67,6 +66,6 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = propTypes;
+// Login.propTypes = propTypes;
 
 export default withRouter(Login);
