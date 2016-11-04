@@ -15,25 +15,14 @@ class Nav extends Component {
   render() {
     return (
       <div>
-        {
-        this.state.isLoggedIn === true ?
-          <ul id="nav_bar">
-            <li><Link to="/">Welcome</Link></li>
-            <li><Link to="/logout">Log Out</Link></li>
-            <li><Link to="/home">Feeling Guilty?</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/charity">Charity</Link></li>
-          </ul>
-          :
-          <ul id="nav_bar">
-            <li><Link to="/">Welcome</Link></li>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/register">Register</Link></li>
-            <li><Link to="/home">Feeling Guilty?</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/charity">Charity</Link></li>
-          </ul>
-      }
+        <ul id="nav_bar">
+          <li><Link to="/">Welcome</Link></li>
+          <li><Link to="/home">Feeling Guilty?</Link></li>
+          <li><Link to="/about_me">About Me</Link></li>
+          <li><Link to="/charity">Charity</Link></li>
+          <li><Link to="/login">Log In</Link></li>
+          <li><Link to="/register">Register</Link></li>
+        </ul>
         { this.props.children }
       </div>
     );

@@ -4,6 +4,12 @@ class Api::V1::ClicksController < ApplicationController
    render json: clicks
  end
 
+ def show
+   @click = Click.find_by user_id: params[:id] # !!! :id becomes user_id, NOT the primary key!
+   puts params
+   render json: @user
+ end
+
  def create
    click = Click.new(click_params)
    if click.save

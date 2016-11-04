@@ -22,6 +22,7 @@ class Register extends Component {
     this.createUsers = this.createUsers.bind(this);
   }
 
+// Firebase Auth and setting state with the firebase UID, then push to Home
   handleRegisterSubmit() {
     const { username, password } = this.state;
     firebase.auth()
@@ -44,6 +45,7 @@ class Register extends Component {
     console.log('set state in login');
   }
 
+// Adds current user to database
   createUsers() {
     const username = this.state.username;
     const first_name = this.state.first_name;
@@ -71,12 +73,12 @@ class Register extends Component {
       <div>
         <div id="register-form">
           <div>
-           <input
-            name="first_name"
-            onChange={this.handleChange}
-            type="text"
-            placeholder="First Name"
-          />
+          <input
+             name="first_name"
+             onChange={this.handleChange}
+             type="text"
+             placeholder="First Name"
+           />
           <input
             name="last_name"
             onChange={this.handleChange}

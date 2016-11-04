@@ -11,8 +11,13 @@ class Home extends Component {
     this.state = {
       first_name: '',
       firebase_uid: '',
+      user_id: null,
     };
     this.getUser = this.getUser.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({ firebase_uid: (firebase.auth().currentUser.uid) });
   }
 
   componentDidMount() {
@@ -20,20 +25,29 @@ class Home extends Component {
   }
 
   getUser() {
-    request.get(`http://localhost:3000/api/v1/users/${firebase.auth().currentUser.uid}`).then((response) => {
-      console.log(response.body);
-      const firstName = response.body.first_name;
+    const baseURL = 'http://localhost:3000/api/v1/users/';
+    request.get(`${baseURL}${this.state.firebase_uid}`).then((response) => {
+      const { first_name } = response.body;
+      this.setState({
+        first_name: first_name,
+        firebase_uid: firebase.auth().currentUser.uid,
+        user_id: response.body.id,
+        // clicks: response.body.clicks.length,
+      });
+      console.log('Home was rendered!');
     });
   }
 
   render() {
     return (
       <div>
-      <h1>Welcome, Nate</h1>
-        <Button />
+        <h1>Welcome, {this.state.first_name}</h1>
+        <Button
+          userId={this.state.user_id}
+        />
         <Link to="charity">Charities</Link>
       </div>
-  );
+    );
   }
 }
 

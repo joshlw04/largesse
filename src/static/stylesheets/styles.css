@@ -2,17 +2,19 @@ body {
   background-color: lightpink;
 }
 
+
+.tip_list li {
+  list-style: none;
+  display: block;
+}
+
+/* Styles for Nav Bar */
 #nav_bar {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
-}
-
-.tip_list {
-  list-style-type: none;
-  display: block;
 }
 
 li {
@@ -32,11 +34,17 @@ a:hover:not(.active) {
 }
 
 .active {
-background-color:#4CAF50;
+background-color: #4CAF50;
 }
 
 .welcome_button {
 
+}
+
+.auth_link {
+  border: 1px solid black;
+  height: 2em;
+  width: 5em;
 }
 
 #button_container {

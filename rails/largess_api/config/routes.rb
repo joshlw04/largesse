@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :charities, only: [:create, :index]
       resources :users, only: [:create, :index, :show]
-      resources :clicks, only: [:create, :index]
+      resources :clicks, only: [:create, :index, :show]
     end
   end
 end

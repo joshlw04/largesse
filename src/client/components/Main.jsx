@@ -10,8 +10,6 @@ const propTypes = {
 class Main extends Component {
   constructor() {
     super();
-    this.state = {
-    };
   }
 /*----------------------------------------------------------------------------------------------*/
 
