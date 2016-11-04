@@ -1,54 +1,38 @@
 import React, { Component } from 'react';
-import Counter from './Counter.jsx';
-import request from 'superagent';
-import firebase from '../../../firebase.config.js';
 
 const propTypes = {
-  userId: React.PropTypes.number,
-  clicks: React.PropTypes.number,
+  buttonClick: React.PropTypes.func,
 };
 
 class Button extends Component {
   constructor() {
     super();
-    this.state = {
-      clicks: null,
-    };
-    this.buttonClickPostToDB = this.buttonClickPostToDB.bind(this);
   }
 
-  componentDidMount() {
-    const userClicks = firebase.auth().currentUser.uid;
-    request.get(`http://localhost:3000/api/v1/users/${userClicks}`)
-           .then((response) => {
-             console.log(response.body);
-             this.setState({ clicks: response.body.clicks.length });
-            console.log(this.state);
-           });
-  }
+  // componentDidMount() {
+  //   const userClicks = firebase.auth().currentUser.uid;
+  //   request.get(`http://localhost:3000/api/v1/users/${userClicks}`)
+  //          .then((response) => {
+  //            console.log(response.body);
+  //            this.setState({
+  //              clicks: response.body.clicks.length,
+  //            });
+  //           console.log('PROPS', this.props);
+  //          });
+  // }
 
-  buttonClickPostToDB() {
-    request.post('http://localhost:3000/api/v1/clicks/')
-      .send(
-          { click:
-          { user_id: 16,
-            location: 'NYC' }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .then(() => {
-        this.setState({ clicks: this.state.clicks += 1 });
-        console.log(this.state);
-      });
-  }
+  // componentWillReceiveProps(props) {
+  //   this.setState({
+  //     user_id: 90,
+  //   });
+  // }
+
 
   render() {
     return (
       <div>
         <div id="button_container">
-          <button className="btn" onClick={this.buttonClickPostToDB}>Feeling Guilty?</button>
-          <Counter clicks={this.state.clicks} />
+          <button className="btn" onClick={this.props.buttonClick}>Feeling Guilty?</button>
         </div>
       </div>
     );
