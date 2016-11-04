@@ -33,6 +33,7 @@ class Login extends Component {
     })
     .then(() => {
       this.props.router.push('/home');
+
     });
   }
 

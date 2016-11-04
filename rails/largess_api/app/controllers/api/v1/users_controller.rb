@@ -1,14 +1,13 @@
 class Api::V1::UsersController < ApplicationController
   def index
-   users = User.all.includes(:clicks)
-   render json: users, include: :clicks
-  #  render :json => users.to_json(:include => :clicks)
+   users = User.all.includes(:clicks, :charity)
+   render json: users, include: [:clicks, :charity] # how to get many associations listed in json
  end
 
  def show
    @user = User.find_by firebase_uid: params[:id] # !!! :id becomes firebase_uid, NOT the primary key!
    puts params
-   render json: @user, include: :clicks
+   render json: @user, include: [:clicks, :charity]
  end
 
  def create

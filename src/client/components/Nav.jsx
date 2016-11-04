@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 const propTypes = {
-  children: React.PropTypes.element,
+  // children: React.PropTypes.element,
 };
 
 class Nav extends Component {
@@ -32,3 +32,5 @@ class Nav extends Component {
 Nav.propTypes = propTypes;
 
 export default Nav;
+
+// TODO: this component should be stateless, or can we pass props down from functions we call from the children here?

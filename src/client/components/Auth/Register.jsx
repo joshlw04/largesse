@@ -33,7 +33,6 @@ class Register extends Component {
       .then((firebaseUserData) => {
         this.setState({ firebase_uid: firebaseUserData.uid });
         this.createUsers();
-        this.props.router.push('/home');
       });
   }
 
@@ -60,11 +59,12 @@ class Register extends Component {
         total_clicks: 0,
         cost_per_click: 1,
         payment_type: 'VISA',
-        payment_last_four: 7889,
+        payment_last_four: 1357,
         firebase_uid: firebase_uid,
-        charity_id: 1 } })
+        charity_id: 2 } })
           .then((response) => {
             console.log(response.body);
+            this.props.router.push('/home');
           });
   }
 

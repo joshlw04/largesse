@@ -19,22 +19,42 @@ class Home extends Component {
     this.buttonClickPostToDB = this.buttonClickPostToDB.bind(this);
   }
 
+/*
+before rendering, call this function, which will make a GET request
+for the currently logged in user and set the state of Home based on that user.
+
+*/
   componentWillMount() {
     this.getUser();
+  }
+
+  /*
+  after rendering once, call this function, which .
+
+  */
+
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
+        console.log('Logged IN', firebaseUser.uid);
+      } else {
+        console.log('Not logged in');
+      }
+    });
   }
 
   getUser() {
     const baseURL = 'http://localhost:3000/api/v1/users/';
     const userID = firebase.auth().currentUser.uid;
-    request.get(`${baseURL}${userID}`).then((response) => {
-      this.setState({
-        first_name: response.body.first_name,
-        firebase_uid: firebase.auth().currentUser.uid,
-        user_id: response.body.id,
-        clicks: response.body.clicks.length,
-      });
-      console.log("Home rendered, this is the state of home:", this.state);
-    });
+    request.get(`${baseURL}${userID}`)
+           .then((response) => {
+             this.setState({
+               first_name: response.body.first_name,
+               firebase_uid: firebase.auth().currentUser.uid,
+               user_id: response.body.id,
+               clicks: response.body.clicks.length,
+             });
+           });
   }
 
   buttonClickPostToDB() {
