@@ -38,8 +38,11 @@ class Welcome extends Component {
         {
           this.state.isLoggedIn === false ?
             <div>
-              <Link className="auth_link" to="login">Login</Link>
-              <Link className="auth_link" to="register">Register</Link>
+              <br /><br />
+              <Link className="button" to="register">Sign Up?</Link>
+              <br />
+              or <Link className="" to="login">login</Link>
+
             </div>
           :
             <div>

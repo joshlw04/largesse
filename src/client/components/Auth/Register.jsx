@@ -73,19 +73,20 @@ class Register extends Component {
       <div>
         <div id="register-form">
           <div>
-          <input
-             name="first_name"
-             onChange={this.handleChange}
-             type="text"
-             placeholder="First Name"
-           />
+            <input
+              name="first_name"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="First Name"
+            />
+            <br />
           <input
             name="last_name"
             onChange={this.handleChange}
             type="text"
             placeholder="Last Name"
           />
-
+          <br />
             <input
               name="username"
               onChange={this.handleChange}

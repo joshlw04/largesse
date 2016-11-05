@@ -5,6 +5,8 @@ import firebase from '../../../firebase.config.js';
 
 import Button from './Button.jsx';
 import Counter from './Counter.jsx';
+import Account from './Account.jsx';
+
 
 class Home extends Component {
   constructor() {
@@ -85,6 +87,7 @@ for the currently logged in user and set the state of Home based on that user.
           clicks={this.state.clicks}
         />
         <Counter clicks={this.state.clicks} />
+        <Link to="account">My Account</Link>
         <Link to="charity">Charities</Link>
       </div>
     );

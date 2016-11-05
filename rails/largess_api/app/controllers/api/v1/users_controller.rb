@@ -6,7 +6,6 @@ class Api::V1::UsersController < ApplicationController
 
  def show
    @user = User.find_by firebase_uid: params[:id] # !!! :id becomes firebase_uid, NOT the primary key!
-   puts params
    render json: @user, include: [:clicks, :charity]
  end
 
@@ -19,6 +18,16 @@ class Api::V1::UsersController < ApplicationController
    end
  end
 
+ def update
+   @user = User.find_by firebase_uid: params[:id]
+   if @user.update(user_params)
+     render json: @user, include: [:clicks, :charity]
+   else
+     render json: @user.errors, status: :unprocessable_entity
+   end
+ end
+
+
  private
 
  def user_params
@@ -27,4 +36,5 @@ class Api::V1::UsersController < ApplicationController
 
 end
 
-# How to show both charities and clicks in the user json??
+# How to show both charities and clicks in the user json? =
+        # render json: @user, include: [:clicks, :charity]

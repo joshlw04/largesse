@@ -18,7 +18,7 @@ class Nav extends Component {
         <ul id="nav_bar">
           <li><Link to="/">Welcome</Link></li>
           <li><Link to="/home">Feeling Guilty?</Link></li>
-          <li><Link to="/about_me">About Me</Link></li>
+          <li><Link to="/account">My Account</Link></li>
           <li><Link to="/charity">Charity</Link></li>
           <li><Link to="/login">Log In</Link></li>
           <li><Link to="/register">Register</Link></li>
