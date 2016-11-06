@@ -7,6 +7,10 @@ import Button from './Button.jsx';
 import Counter from './Counter.jsx';
 import Account from './Account.jsx';
 
+const propTypes = {
+  router: React.PropTypes.object,
+};
+
 class Home extends Component {
   constructor() {
     super();
@@ -81,6 +85,7 @@ for the currently logged in user and set the state of Home based on that user.
     .signOut()
     .then(() => {
       this.setState({ isLoggedIn: false });
+      this.props.router.push('/');
     });
   }
 
@@ -88,7 +93,13 @@ for the currently logged in user and set the state of Home based on that user.
     return (
       <div>
         <div className="navbar">
-          <i className="ion-log-out" onClick={this.signOutUser} onTouchStart={this.signOutUser}></i>
+          <div
+            className="log-out-button"
+            onClick={this.signOutUser}
+            onTouchStart={this.signOutUser}
+          >
+            <i className="ion-log-out"></i>
+          </div>
         </div>
         <h1>Hi, {this.state.first_name}</h1>
         <Button
@@ -112,5 +123,7 @@ for the currently logged in user and set the state of Home based on that user.
     );
   }
 }
+
+Home.propTypes = propTypes;
 
 export default Home;

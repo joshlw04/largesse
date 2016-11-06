@@ -27,6 +27,7 @@ class Welcome extends Component {
         <div id="welcome-icon">
           <img className="logo" src="images/largess-logo.png" alt="" />
         </div>
+        <br />
         <h1>Largess</h1>
         <Link className="button register" to="register">Sign Up</Link>
         <br />
