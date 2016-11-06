@@ -78,9 +78,6 @@ const PaymentForm = React.createClass({
           })
           .catch((err) => {
             console.log(err);
-          })
-          .then((res) => {
-            console.log('post request sent', res);
           });
       }
       request.put(`http://largress-api.herokuapp.com/api/v1/users/${this.props.firebaseUID}`)
@@ -88,7 +85,10 @@ const PaymentForm = React.createClass({
         { user:
         { payment_last_four: this.state.lastFour,
         },
-        }).then();
+        })
+      .catch((err) => {
+        console.log(err);
+      });
     });
   },
 

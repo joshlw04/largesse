@@ -5,6 +5,10 @@ import request from 'superagent';
 import CCForm from './Stripe/CCForm.jsx';
 import firebase from '../../../firebase.config.js';
 
+const propTypes = {
+  router: React.PropTypes.object,
+};
+
 class Account extends Component {
   constructor() {
     super();
@@ -94,6 +98,9 @@ class Account extends Component {
       { cost_per_click: cost_per_click,
         charity_id: this.state.charity_id,
       },
+      })
+      .then(() => {
+        this.props.router.push('/home');
       });
   }
 
@@ -173,6 +180,8 @@ class Account extends Component {
     );
   }
 }
+
+Account.propTypes = propTypes;
 
 export default Account;
 

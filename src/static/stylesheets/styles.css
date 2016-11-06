@@ -78,6 +78,7 @@ button,
 	left: 0;
 	text-align: left;
 	padding: 1em;
+  width: 100%;
 }
 
 .navbar-home {
