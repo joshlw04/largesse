@@ -89,9 +89,15 @@ for the currently logged in user and set the state of Home based on that user.
           clicks={this.state.clicks}
           cost_per_click={this.state.cost_per_click}
         />
-        <Link className="button my-account" to="account">My Account</Link>
+        <Link
+          className="button my-account" onTouchStart="account"
+          to="account"
+        >My Account</Link>
         <br />
-        <Link to="charity">List of Charities</Link>
+        <Link
+          to="charity"
+          onTouchStart="charity"
+        >List of Charities</Link>
         <br />
       </div>
     );

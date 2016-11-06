@@ -74,7 +74,11 @@ class Register extends Component {
   render() {
     return (
       <div>
-        <Link className="back-button" to="/"><i className="ion-ios-arrow-back"></i> Back</Link>
+        <Link
+          className="back-button"
+          onTouchStart="/"
+          to="/"><i className="ion-ios-arrow-back"></i>
+           Back</Link>
         <h1>Create Account</h1>
         <div id="register-form">
           <div>
@@ -110,6 +114,7 @@ class Register extends Component {
           <button
             className="button register"
             onClick={this.handleRegisterSubmit}
+            onTouchStart={this.handleRegisterSubmit}
           >Register</button>
         </div>
       </div>

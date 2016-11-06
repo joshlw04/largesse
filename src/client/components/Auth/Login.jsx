@@ -40,7 +40,7 @@ class Login extends Component {
   render() {
     return (
       <div>
-      <Link className="back-button" to="/"><i className="ion-ios-arrow-back"></i> Back</Link>
+      <Link className="back-button" onTouchStart="/" to="/"><i className="ion-ios-arrow-back"></i> Back</Link>
       <h1>Sign In</h1>
 
         <div id="login-form">
