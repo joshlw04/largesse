@@ -40,9 +40,9 @@ class Welcome extends Component {
         {/* <WelcomeSlideshow /> */}
         <div id="welcome-icon">
         </div>
-        <Link className="button register" onTouchStart="register" to="register">Sign Up</Link>
+        <Link className="button register" to="register">Sign Up</Link>
         <br />
-        Already have an account? <Link onTouchStart="login" to="login"><b>Sign in</b></Link>
+        Already have an account? <Link to="login"><b>Sign in</b></Link>
       </div>
 
     );

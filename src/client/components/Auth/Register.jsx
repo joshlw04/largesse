@@ -76,7 +76,6 @@ class Register extends Component {
       <div>
         <Link
           className="back-button"
-          onTouchStart="/"
           to="/"><i className="ion-ios-arrow-back"></i>
            Back</Link>
         <h1>Create Account</h1>

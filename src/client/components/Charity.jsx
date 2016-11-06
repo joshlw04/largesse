@@ -32,7 +32,7 @@ class Charity extends Component {
     });
     return (
       <div>
-      <Link className="back-button" onTouchStart="home" to="home">Back</Link>
+      <Link className="back-button" to="home">Back</Link>
         {charityList}
       </div>
     );
