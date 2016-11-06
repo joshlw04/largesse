@@ -75,7 +75,7 @@ class Register extends Component {
             to="/"><i className="ion-ios-arrow-back">
             </i> Back</Link>
         </div>
-        <h1>Create Account</h1>
+        <h2>Create Account</h2>
         <div id="register-form">
           <div>
             <input

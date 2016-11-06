@@ -94,10 +94,6 @@ class Account extends Component {
       { cost_per_click: cost_per_click,
         charity_id: this.state.charity_id,
       },
-      })
-      .then(() => {
-        document.querySelector('.show').className = 'hidden';
-        document.querySelector('.hidden').className = 'show';
       });
   }
 

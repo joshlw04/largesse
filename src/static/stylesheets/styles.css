@@ -42,13 +42,11 @@ input {
   box-shadow: none !important;
 }
 
+.input-cvc,
 .input-date {
-  width: 40%;
-  padding: 1em;
-  font-size: 1.15em;
-  border: 1px solid #32325d;
-  margin-bottom: 1em;
+  width: 33%;
 }
+
 
 ::-webkit-input-placeholder,
 ::-moz-placeholder,
@@ -80,6 +78,14 @@ button,
 	left: 0;
 	text-align: left;
 	padding: 1em;
+}
+
+.navbar-home {
+  text-align: right;
+}
+
+.logout-button {
+  font-size: 1.5em;
 }
 
 .big-button {
