@@ -123,7 +123,9 @@ class Account extends Component {
     console.log('state on render of Account.jsx', this.state);
     return (
       <div>
-        <Link className="back-button" to="home"><i className="ion-ios-arrow-back"></i> Back</Link>
+      	<div className="navbar">
+        	<Link className="back-button" to="home"><i className="ion-ios-arrow-back"></i> Back</Link>
+        </div>
         <h1>{this.state.first_name} {this.state.last_name}</h1>
         <p>Your current Charity is</p> <h2>{this.state.charity_name}</h2>
         <br />

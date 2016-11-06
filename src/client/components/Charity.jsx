@@ -32,8 +32,10 @@ class Charity extends Component {
     });
     return (
       <div>
-      <Link className="back-button" to="home">Back</Link>
-        {charityList}
+      <div className="navbar">
+	      <Link className="back-button" to="home"><i className="ion-ios-arrow-back"></i> Back</Link>
+	        {charityList}
+	      </div>
       </div>
     );
   }

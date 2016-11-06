@@ -34,6 +34,8 @@ input {
   font-size: 1.15em;
   border: 1px solid #32325d;
   margin-bottom: 1em;
+  -webkit-appearance: none; 
+  box-shadow: none !important;  
 }
 
 .input-date {
@@ -68,6 +70,14 @@ button,
   letter-spacing: 1px;
 }
 
+.navbar {
+	position: absolute;
+	top:0;
+	left: 0;
+	text-align: left;
+	padding-left: 1em;
+}
+
 .big-button {
   border: 0px;
 	-moz-box-shadow: 14px 14px 24px -7px #a1a1f0;
@@ -87,9 +97,10 @@ button,
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Arial;
-	font-size:28px;
-	padding:32px 76px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 1.5em;
+	font-weight: bold;
+	letter-spacing: 0px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #9b14b3;
 }
@@ -108,10 +119,7 @@ button,
 	top:1px;
 }
 
-}
-
 .input-box {
-  height: 2em;
   width: 5em;
   margin: 0 auto;
 }
@@ -120,13 +128,17 @@ button,
   -moz-appearance: none;
   -webkit-appearance: none;
   width: 100%;
-  padding: 1.25em;
-  font-size: 1.35em;
+  padding: 1.15em;
+  font-size: 1.1em;
   border: 1px solid #32325d;
   margin-bottom: 1em;
   background-color: white;
+  background: url(../images/drop-down-arrow.png) no-repeat right white;
+  background-size: contain;
+  font-family: 'Montserrat', sans-serif;
 }
 
 #charity-list {
 
 }
+
