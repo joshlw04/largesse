@@ -87,7 +87,10 @@ for the currently logged in user and set the state of Home based on that user.
   render() {
     return (
       <div>
-      <h1>Hi, {this.state.first_name}</h1>
+        <div className="navbar">
+          <i className="ion-log-out" onClick={this.signOutUser} onTouchStart={this.signOutUser}></i>
+        </div>
+        <h1>Hi, {this.state.first_name}</h1>
         <Button
           buttonClick={this.buttonClickPostToDB}
           userId={this.state.user_id}
@@ -105,12 +108,6 @@ for the currently logged in user and set the state of Home based on that user.
         <Link
           to="charity"
         >List of Charities</Link>
-        <br />
-        <Link
-          className="button button-logout"
-          onTouchStart={this.signOutUser}
-          onClick={this.signOutUser}
-        >Log Out</Link>
       </div>
     );
   }
