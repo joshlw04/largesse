@@ -34,27 +34,19 @@ class Welcome extends Component {
   }
 
   render() {
-    console.log('state of Home', this.state);
     return (
       <div>
         <h1>Largess</h1>
         {/* <WelcomeSlideshow /> */}
-        {
-          !this.state.isLoggedIn ?
-            <div>
-              <br />
-              <br />
+            <div id="welcome-main">
+              <div id="welcome-icon">
+
+              </div>
               <Link className="button register" to="register">Sign Up</Link>
               <br />
-              or <Link to="login">Already have an account? Login here</Link>
+              Already have an account? <Link to="login"><b>Sign in</b></Link>
             </div>
-          :
-            <div>
-              <Link className="button logout" to="/" onClick={this.signOutUser}>Log Out</Link>
-              <br />
-              <Link to="/home">Home</Link>
-            </div>
-        }
+
       </div>
     );
   }

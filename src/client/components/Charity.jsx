@@ -32,6 +32,7 @@ class Charity extends Component {
     });
     return (
       <div>
+      <Link className="back-button" to="home">Back</Link>
         {charityList}
       </div>
     );

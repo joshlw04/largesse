@@ -11,14 +11,12 @@ import requireAuth from '../../../utility/authorize.js';
 
 const routes = (
   <Router history={browserHistory}>
-    {/* <Route component={Nav}> */}
     <Route path="/" component={Welcome} />
-    <Route path="home" component={Home} onEnter={requireAuth} />
+    <Route path="home" component={Home} />
     <Route path="login" component={Login} />
     <Route path="register" component={Register} />
-    <Route path="account" component={Account} onEnter={requireAuth} />
+    <Route path="account" component={Account} />
     <Route path="charity" component={Charity} />
-    {/* </Route> */}
   </Router>
 );
 

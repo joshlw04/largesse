@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 import request from 'superagent';
 import firebase from '../../../../firebase.config.js';
 
@@ -74,6 +74,8 @@ class Register extends Component {
   render() {
     return (
       <div>
+        <Link className="back-button" to="/"><i className="ion-ios-arrow-back"></i> Back</Link>
+        <h1>Create Account</h1>
         <div id="register-form">
           <div>
             <input
@@ -94,7 +96,7 @@ class Register extends Component {
               name="username"
               onChange={this.handleChange}
               type="text"
-              placeholder="username"
+              placeholder="Email"
             />
           </div>
           <div>
@@ -102,10 +104,11 @@ class Register extends Component {
               name="password"
               onChange={this.handleChange}
               type="password"
-              placeholder="password"
+              placeholder="Password"
             />
           </div>
           <button
+            className="button register"
             onClick={this.handleRegisterSubmit}
           >Register</button>
         </div>

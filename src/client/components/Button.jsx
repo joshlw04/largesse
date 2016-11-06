@@ -9,30 +9,11 @@ class Button extends Component {
     super();
   }
 
-  // componentDidMount() {
-  //   const userClicks = firebase.auth().currentUser.uid;
-  //   request.get(`http://localhost:3000/api/v1/users/${userClicks}`)
-  //          .then((response) => {
-  //            console.log(response.body);
-  //            this.setState({
-  //              clicks: response.body.clicks.length,
-  //            });
-  //           console.log('PROPS', this.props);
-  //          });
-  // }
-
-  // componentWillReceiveProps(props) {
-  //   this.setState({
-  //     user_id: 90,
-  //   });
-  // }
-
-
   render() {
     return (
       <div>
         <div id="button_container">
-          <button className="btn" onClick={this.props.buttonClick}>Feeling Guilty?</button>
+          <button className="button big-button" onClick={this.props.buttonClick}>Feeling Guilty?</button>
         </div>
       </div>
     );

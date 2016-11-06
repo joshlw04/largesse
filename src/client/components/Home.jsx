@@ -79,6 +79,7 @@ for the currently logged in user and set the state of Home based on that user.
   render() {
     return (
       <div>
+      <h1>Hi, {this.state.first_name}</h1>
         <Button
           buttonClick={this.buttonClickPostToDB}
           userId={this.state.user_id}
@@ -88,11 +89,9 @@ for the currently logged in user and set the state of Home based on that user.
           clicks={this.state.clicks}
           cost_per_click={this.state.cost_per_click}
         />
-        <Link to="account">My Account</Link>
+        <Link className="button my-account" to="account">My Account</Link>
         <br />
-        <Link to="charity">Charities</Link>
-        <br />
-        <Link to="home">Home</Link>
+        <Link to="charity">List of Charities</Link>
         <br />
       </div>
     );

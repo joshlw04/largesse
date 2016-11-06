@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router';
+import { withRouter, Link } from 'react-router';
 import firebase from '../../../../firebase.config.js';
 
 const propTypes = {
@@ -40,13 +40,16 @@ class Login extends Component {
   render() {
     return (
       <div>
+      <Link className="back-button" to="/"><i className="ion-ios-arrow-back"></i> Back</Link>
+      <h1>Sign In</h1>
+
         <div id="login-form">
           <div>
             <input
               name="username"
               onChange={this.handleLoginChange}
               type="text"
-              placeholder="username"
+              placeholder="Email Address"
             />
           </div>
           <div>
@@ -54,12 +57,13 @@ class Login extends Component {
               name="password"
               onChange={this.handleLoginChange}
               type="password"
-              placeholder="password"
+              placeholder="Password"
             />
           </div>
           <button
-            onClick={this.handleLoginSubmit}
-          >Login</button>
+            className="button sign-in"
+            onTouchStart={this.handleLoginSubmit} onClick={this.handleLoginSubmit}
+          >Sign In</button>
         </div>
       </div>
     );
