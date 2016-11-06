@@ -44,7 +44,8 @@ input {
 
 .input-cvc,
 .input-date {
-  width: 33%;
+  width: 30%;
+  margin-right: 3%;
   display: inline-block;
 }
 
