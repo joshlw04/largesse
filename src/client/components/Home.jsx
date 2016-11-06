@@ -7,7 +7,6 @@ import Button from './Button.jsx';
 import Counter from './Counter.jsx';
 import Account from './Account.jsx';
 
-
 class Home extends Component {
   constructor() {
     super();
@@ -16,6 +15,8 @@ class Home extends Component {
       firebase_uid: '',
       user_id: null,
       clicks: null,
+      cost_per_click: null,
+      isLoggedIn: false,
     };
     this.getUser = this.getUser.bind(this);
     this.buttonClickPostToDB = this.buttonClickPostToDB.bind(this);
@@ -30,23 +31,20 @@ for the currently logged in user and set the state of Home based on that user.
     this.getUser();
   }
 
-  /*
-  after rendering once, call this function, which .
-
-  */
-
   componentDidMount() {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
         console.log('Logged IN', firebaseUser.uid);
+        this.setState({ isLoggedIn: true });
       } else {
         console.log('Not logged in');
+        this.setState({ isLoggedIn: false });
       }
     });
   }
 
   getUser() {
-    const baseURL = 'http://localhost:3000/api/v1/users/';
+    const baseURL = 'https://largress-api.herokuapp.com/api/v1/users/';
     const userID = firebase.auth().currentUser.uid;
     request.get(`${baseURL}${userID}`)
            .then((response) => {
@@ -55,12 +53,13 @@ for the currently logged in user and set the state of Home based on that user.
                firebase_uid: firebase.auth().currentUser.uid,
                user_id: response.body.id,
                clicks: response.body.clicks.length,
+               cost_per_click: response.body.cost_per_click,
              });
            });
   }
 
   buttonClickPostToDB() {
-    request.post('http://localhost:3000/api/v1/clicks/')
+    request.post('https://largress-api.herokuapp.com/api/v1/clicks/')
       .send(
       { click:
       {
@@ -80,15 +79,21 @@ for the currently logged in user and set the state of Home based on that user.
   render() {
     return (
       <div>
-        <h1>Welcome, {this.state.first_name}</h1>
         <Button
           buttonClick={this.buttonClickPostToDB}
           userId={this.state.user_id}
           clicks={this.state.clicks}
         />
-        <Counter clicks={this.state.clicks} />
+        <Counter
+          clicks={this.state.clicks}
+          cost_per_click={this.state.cost_per_click}
+        />
         <Link to="account">My Account</Link>
+        <br />
         <Link to="charity">Charities</Link>
+        <br />
+        <Link to="home">Home</Link>
+        <br />
       </div>
     );
   }

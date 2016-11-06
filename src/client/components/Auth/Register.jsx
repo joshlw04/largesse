@@ -50,7 +50,7 @@ class Register extends Component {
     const first_name = this.state.first_name;
     const last_name = this.state.last_name;
     const firebase_uid = this.state.firebase_uid;
-    request.post('http://localhost:3000/api/v1/users')
+    request.post('https://largress-api.herokuapp.com/api/v1/users')
            .send(
       { user:
       { first_name: first_name,
@@ -58,10 +58,13 @@ class Register extends Component {
         email: username,
         total_clicks: 0,
         cost_per_click: 1,
-        payment_type: 'VISA',
-        payment_last_four: 1357,
+        payment_type: '',
+        payment_last_four: null,
         firebase_uid: firebase_uid,
-        charity_id: 2 } })
+        charity_id: 1 } })
+          .catch((err) => {
+            console.log(err);
+          })
           .then((response) => {
             console.log(response.body);
             this.props.router.push('/home');

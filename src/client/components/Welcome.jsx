@@ -7,7 +7,7 @@ class Welcome extends Component {
   constructor() {
     super();
     this.state = {
-      isLoggedIn: (firebase.auth().currentUser !== null), // this will be either true or false
+      isLoggedIn: false, // this will be either true or false
     };
     this.signOutUser = this.signOutUser.bind(this);
   }
@@ -16,8 +16,10 @@ class Welcome extends Component {
     firebase.auth().onAuthStateChanged((firebaseUser) => {
       if (firebaseUser) {
         console.log('Logged IN', firebaseUser.uid);
+        this.setState({ isLoggedIn: true });
       } else {
         console.log('Not logged in');
+        this.setState({ isLoggedIn: false });
       }
     });
   }
@@ -32,21 +34,25 @@ class Welcome extends Component {
   }
 
   render() {
+    console.log('state of Home', this.state);
     return (
-      <div>Largess
-        <WelcomeSlideshow />
+      <div>
+        <h1>Largess</h1>
+        {/* <WelcomeSlideshow /> */}
         {
-          this.state.isLoggedIn === false ?
+          !this.state.isLoggedIn ?
             <div>
-              <br /><br />
-              <Link className="button" to="register">Sign Up?</Link>
               <br />
-              or <Link className="" to="login">login</Link>
-
+              <br />
+              <Link className="button register" to="register">Sign Up</Link>
+              <br />
+              or <Link to="login">Already have an account? Login here</Link>
             </div>
           :
             <div>
-              <Link to="/" onClick={this.signOutUser}>Log Out</Link>
+              <Link className="button logout" to="/" onClick={this.signOutUser}>Log Out</Link>
+              <br />
+              <Link to="/home">Home</Link>
             </div>
         }
       </div>

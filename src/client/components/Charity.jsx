@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import request from 'superagent';
+import { Link } from 'react-router';
 
 class Charity extends Component {
   constructor() {
@@ -10,11 +11,12 @@ class Charity extends Component {
   }
 
   componentDidMount() {
-    request.get('http://localhost:3000/api/v1/charities')
+    request.get('https://largress-api.herokuapp.com/api/v1/charities')
           .then((charities) => {
             console.log("CDM ran");
-            this.setState({ charities: charities })
-            console.log(this.state);
+            console.log('return from GET request:', charities.body);
+            this.setState({ charities: charities.body })
+            console.log('current state:', this.state);
           });
   }
 
@@ -24,14 +26,13 @@ class Charity extends Component {
         <div className="charity_div" key={idx}>
           <h2 className="charity_header">{charity.name}</h2>
           <p className="charity_mission">{charity.mission}</p>
-          <h3 className="charity_address">{charity.address}</h3>
+          {/* <h3 className="charity_address"><Link to={charity.address}>Donate Here</Link></h3> */}
         </div>
       );
     });
     return (
       <div>
         {charityList}
-        hello from charities
       </div>
     );
   }

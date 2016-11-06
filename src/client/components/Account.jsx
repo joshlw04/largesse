@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
+import Modal from 'react-modal';
 import request from 'superagent';
 
+import CCForm from './Stripe/CCForm.jsx';
 import firebase from '../../../firebase.config.js';
 
 class Account extends Component {
@@ -10,6 +13,7 @@ class Account extends Component {
       first_name: '',
       firebase_uid: '',
       user_id: null,
+      email: '',
       clicks: null,
       cost_per_click: '',
       charity_address: '',
@@ -17,6 +21,9 @@ class Account extends Component {
       charity_id: '',
       charity_name: '',
       payment_type: '',
+      isLoggedIn: (firebase.auth().currentUser !== null),
+      stripe_id: '',
+      payment_last_four: null,
     };
 
     this.getUserInfo = this.getUserInfo.bind(this);
@@ -28,12 +35,19 @@ class Account extends Component {
   }
 
   componentWillMount() {
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
+        console.log('Logged IN', firebaseUser.uid);
+      } else {
+        console.log('Not logged in');
+      }
+    });
     this.getUserInfo();
     this.getCharities();
   }
 
   getUserInfo() {
-    const baseURL = 'http://localhost:3000/api/v1/users/';
+    const baseURL = 'https://largress-api.herokuapp.com/api/v1/users/';
     const userID = firebase.auth().currentUser.uid;
     request.get(`${baseURL}${userID}`)
            .then((response) => {
@@ -41,31 +55,33 @@ class Account extends Component {
                first_name: response.body.first_name,
                last_name: response.body.last_name,
                firebase_uid: response.body.firebase_uid,
+               email: response.body.email,
                user_id: response.body.id,
                clicks: response.body.clicks.length,
                cost_per_click: response.body.cost_per_click,
                charity_name: response.body.charity.name,
                charity_address: response.body.charity.address,
                charity_id: response.body.charity_id,
+               stripe_id: response.body.stripe_id,
+               payment_last_four: response.body.payment_last_four,
              });
            });
            console.log('getUserInfo ran');
   }
 
   getCharities() {
-    const baseURL = 'http://localhost:3000/api/v1/charities/';
+    const baseURL = 'https://largress-api.herokuapp.com/api/v1/charities/';
     request.get(baseURL)
            .then((response) => {
              this.setState({
                charity_list: response.body,
              });
-             console.log('charity list:', this.state.charity_list);
            });
   }
 
   testMethod() {
     console.log('updateUserInfo ran');
-    const baseURL = 'http://localhost:3000/api/v1/users/';
+    const baseURL = 'https://largress-api.herokuapp.com/api/v1/users/';
     const userID = firebase.auth().currentUser.uid;
     const cost_per_click = this.state.cost_per_click;
     const charity_id = this.state.charity_id;
@@ -75,12 +91,11 @@ class Account extends Component {
            .send(
       { user:
       { cost_per_click: cost_per_click,
-        payment_type: payment_type,
-        // payment_last_four: 9999,
         charity_id: this.state.charity_id,
         // charity_address: this.state.charity_list
       },
-      }).then();
+      }).then(
+      );
   }
 
   handleCostChange(e) {
@@ -105,16 +120,11 @@ class Account extends Component {
   }
 
   render() {
+    console.log('state on render of Account.jsx', this.state);
     return (
       <div>
-        <h1>Hi, {this.state.first_name} {this.state.last_name}</h1>
-        <p>You have clicked {this.state.clicks} times</p>
-        <p>and you would have given ${this.state.cost_per_click} each click,</p>
-        <p>so your total donation should be</p>
-        <p>${this.state.cost_per_click * this.state.clicks}</p>
-        <p>and your chosen charity is {this.state.charity_name}.</p>
-        <p>Their address to send donations is</p>
-        <p>{this.state.charity_address}</p>
+        <Link to="home">Largess</Link>
+        <h1>{this.state.first_name} {this.state.last_name}</h1>
 
         <select id="charity_list_id" onChange={this.handleCharityChange}>
           <option>Choose your Charity</option>
@@ -129,15 +139,50 @@ class Account extends Component {
             }
         </select>
 
+        <p>How much per click?</p>
         <input
           type="number"
           onChange={this.handleCostChange}
           name="cost_per_click"
           placeholder="Change your cost-per-click here"
         />
+        <p>Total Donation:</p>
+        <p>${this.state.cost_per_click * this.state.clicks}</p>
 
-        <button onClick={this.testMethod}>Submit Changes</button>
+        <button className="button update" onClick={this.testMethod}>Submit Changes</button>
 
+        {
+          this.state.stripe_id === null ?
+        <CCForm
+          firebaseUID={this.state.firebase_uid}
+          email={this.state.email}
+          stripeID={this.state.stripe_id}
+          getUserInfo={this.getUserInfo}
+        />
+        :
+          <div>
+            <h2>Your Credit Card Info:</h2>
+            <h3>{this.state.payment_type} {this.state.payment_last_four}</h3>
+          </div>
+        }
+        {/* <div>
+          <button onClick={this.openModal}>Edit Your Account</button>
+          <Modal isOpen={this.state.open}>
+            <h1>Basic Modal</h1>
+            <button onClick={this.closeModal}>Close</button>
+            <input />
+            <input />
+          </Modal>
+          <button onClick={this.openModal}>Add A Credit Card</button>
+          <Modal isOpen={this.state.open}>
+            <h1>Basic Modal</h1>
+            <button onClick={this.closeModal}>Close</button>
+            <input />
+            <input />
+          </Modal>
+
+      </div>
+ */}
       </div>
     );
   }
