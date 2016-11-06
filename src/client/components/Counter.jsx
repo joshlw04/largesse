@@ -13,10 +13,9 @@ class Counter extends Component {
   render() {
     return (
       <div>
-        <h2>You should be giving</h2>
+        <h3>You should be giving</h3>
         <h1>${this.props.clicks * this.props.cost_per_click}</h1>
         <h3>this month</h3>
-
       </div>
     );
   }

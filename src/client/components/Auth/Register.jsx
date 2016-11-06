@@ -41,15 +41,11 @@ class Register extends Component {
     const stateKey = e.target.name;
     stateObj[stateKey] = e.target.value;
     this.setState(stateObj);
-    console.log('set state in login');
   }
 
 // Adds current user to database
   createUsers() {
-    const username = this.state.username;
-    const first_name = this.state.first_name;
-    const last_name = this.state.last_name;
-    const firebase_uid = this.state.firebase_uid;
+    const { username, first_name, last_name, firebase_uid } = this.state;
     request.post('https://largress-api.herokuapp.com/api/v1/users')
            .send(
       { user:
@@ -65,8 +61,7 @@ class Register extends Component {
           .catch((err) => {
             console.log(err);
           })
-          .then((response) => {
-            console.log(response.body);
+          .then(() => {
             this.props.router.push('/home');
           });
   }
@@ -74,12 +69,12 @@ class Register extends Component {
   render() {
     return (
       <div>
-      	<div className="navbar">
-	        <Link
-	          className="back-button"
-	          to="/"><i className="ion-ios-arrow-back"></i>
-	           Back</Link>
-      	</div>
+        <div className="navbar">
+          <Link
+            className="back-button"
+            to="/"><i className="ion-ios-arrow-back">
+            </i> Back</Link>
+        </div>
         <h1>Create Account</h1>
         <div id="register-form">
           <div>
@@ -90,13 +85,13 @@ class Register extends Component {
               placeholder="First Name"
             />
             <br />
-          <input
-            name="last_name"
-            onChange={this.handleChange}
-            type="text"
-            placeholder="Last Name"
-          />
-          <br />
+            <input
+              name="last_name"
+              onChange={this.handleChange}
+              type="text"
+              placeholder="Last Name"
+            />
+            <br />
             <input
               name="username"
               onChange={this.handleChange}

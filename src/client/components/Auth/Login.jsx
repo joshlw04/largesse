@@ -33,17 +33,16 @@ class Login extends Component {
     })
     .then(() => {
       this.props.router.push('/home');
-
     });
   }
 
   render() {
     return (
       <div>
-      <div className="navbar">
-      	<Link className="back-button" to="/"><i className="ion-ios-arrow-back"></i> Back</Link>
-      </div>
-      <h1>Sign In</h1>
+        <div className="navbar">
+          <Link className="back-button" to="/"><i className="ion-ios-arrow-back"></i> Back</Link>
+        </div>
+        <h1>Sign In</h1>
 
         <div id="login-form">
           <div>

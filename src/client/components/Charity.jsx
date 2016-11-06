@@ -13,10 +13,7 @@ class Charity extends Component {
   componentDidMount() {
     request.get('https://largress-api.herokuapp.com/api/v1/charities')
           .then((charities) => {
-            console.log("CDM ran");
-            console.log('return from GET request:', charities.body);
-            this.setState({ charities: charities.body })
-            console.log('current state:', this.state);
+            this.setState({ charities: charities.body });
           });
   }
 
@@ -26,16 +23,18 @@ class Charity extends Component {
         <div className="charity_div" key={idx}>
           <h2 className="charity_header">{charity.name}</h2>
           <p className="charity_mission">{charity.mission}</p>
-          {/* <h3 className="charity_address"><Link to={charity.address}>Donate Here</Link></h3> */}
         </div>
       );
     });
     return (
       <div>
-      <div className="navbar">
-	      <Link className="back-button" to="home"><i className="ion-ios-arrow-back"></i> Back</Link>
-	        {charityList}
-	      </div>
+        <div className="navbar">
+          <Link className="back-button" to="home">
+          <i className="ion-ios-arrow-back"></i> Back</Link>
+          <div className="charity-list">
+            {charityList}
+          </div>
+        </div>
       </div>
     );
   }

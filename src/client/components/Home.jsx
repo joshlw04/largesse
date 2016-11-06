@@ -20,6 +20,7 @@ class Home extends Component {
     };
     this.getUser = this.getUser.bind(this);
     this.buttonClickPostToDB = this.buttonClickPostToDB.bind(this);
+    this.signOutUser = this.signOutUser.bind(this);
   }
 
 /*
@@ -72,8 +73,15 @@ for the currently logged in user and set the state of Home based on that user.
       })
       .then(() => {
         this.setState({ clicks: this.state.clicks += 1 });
-        console.log('State after button click:', this.state);
       });
+  }
+
+  signOutUser() {
+    firebase.auth()
+    .signOut()
+    .then(() => {
+      this.setState({ isLoggedIn: false });
+    });
   }
 
   render() {
@@ -98,6 +106,11 @@ for the currently logged in user and set the state of Home based on that user.
           to="charity"
         >List of Charities</Link>
         <br />
+        <Link
+          className="button button-logout"
+          onTouchStart={this.signOutUser}
+          onClick={this.signOutUser}
+        >Log Out</Link>
       </div>
     );
   }

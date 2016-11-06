@@ -82,7 +82,6 @@ class Account extends Component {
   }
 
   testMethod() {
-    console.log('updateUserInfo ran');
     const baseURL = 'https://largress-api.herokuapp.com/api/v1/users/';
     const userID = firebase.auth().currentUser.uid;
     const cost_per_click = this.state.cost_per_click;
@@ -95,6 +94,10 @@ class Account extends Component {
       { cost_per_click: cost_per_click,
         charity_id: this.state.charity_id,
       },
+      })
+      .then(() => {
+        document.querySelector('.show').className = 'hidden';
+        document.querySelector('.hidden').className = 'show';
       });
   }
 
@@ -120,11 +123,10 @@ class Account extends Component {
   }
 
   render() {
-    console.log('state on render of Account.jsx', this.state);
     return (
       <div>
-      	<div className="navbar">
-        	<Link className="back-button" to="home"><i className="ion-ios-arrow-back"></i> Back</Link>
+        <div className="navbar">
+          <Link className="back-button" to="home"><i className="ion-ios-arrow-back"></i> Back</Link>
         </div>
         <h1>{this.state.first_name} {this.state.last_name}</h1>
         <p>Your current Charity is</p> <h2>{this.state.charity_name}</h2>
@@ -166,7 +168,11 @@ class Account extends Component {
             <h3><b>{this.state.payment_type}</b> <span>ending in</span> <b>{this.state.payment_last_four}</b></h3>
           </div>
         }
-        <button className="button update" onTouchStart={this.testMethod} onClick={this.testMethod}>Save Details</button>
+        <button
+          className="button update"
+          onTouchStart={this.testMethod}
+          onClick={this.testMethod}
+        >Save Details</button>
       </div>
     );
   }
@@ -175,5 +181,4 @@ class Account extends Component {
 export default Account;
 
 // TODO: create a modal for confirmation of updated account info
-/*
-*/
+// TODO: clean up camelCase in state
