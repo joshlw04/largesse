@@ -13,7 +13,10 @@ class Button extends Component {
     return (
       <div>
         <div id="button_container">
-          <button className="button big-button" onTouchStart={this.props.buttonClick} onClick={this.props.buttonClick}>Feeling Guilty?</button>
+          <button
+            className="button big-button"
+            onClick={this.props.buttonClick}
+          >Feeling Guilty?</button>
         </div>
       </div>
     );
