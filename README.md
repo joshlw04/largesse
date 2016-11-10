@@ -1,5 +1,13 @@
 #Largesse
 
+http://largess.joshua-whitney.com
+
+## User Story:
+
+- As a user, I want a way to be able to ease my guilt for not being able to give cash to someone in need, when I'm approached by someone less fortunate.
+
+- As a user, I want an easy way to give small amounts of cash to a charity of my choosing, and have that amount deducted from my credit card automatically. 
+
 ## Technologies used:
 
 - React/React Router for the View layer
@@ -9,6 +17,7 @@
 - Ionic/React Native for iPhone/Android (Phase 3/4)
 
 ###MVP/Phase 1:
+
 - Users will be able to register, log in, and log out of the app, allowing them to have a personalized experience.
 
 - Users will be able to click a button, signifying when they were approached/had the opportunity to donate money, but did not.
