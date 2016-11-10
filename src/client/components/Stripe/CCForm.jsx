@@ -55,20 +55,31 @@ const PaymentForm = React.createClass({
     let lastFour = '';
     const ccValue = document.querySelector('#ccInfo').value.toString();
     lastFour = ccValue.substr(ccValue.length - 4);
-    this.setState({ lastFour: lastFour, submitDisabled: true, paymentError: null });
+    this.setState({
+      lastFour: lastFour,
+      submitDisabled: true,
+      paymentError: null
+    });
 
     // send form here
     Stripe.createToken(e.target, (status, response) => {
       // stripe command that creates a stripe token
       if (response.error) { // respond with error if no good
-        this.setState({ paymentError: response.error.message, submitDisabled: false });
+        this.setState({
+          paymentError: response.error.message,
+          submitDisabled: false
+        });
       } else { // else, set state with the token...
-        this.setState({ paymentComplete: true, submitDisabled: false, token: response.id });
+        this.setState({
+          paymentComplete: true,
+          submitDisabled: false,
+          token: response.id
+        });
         // post request to PFP, with the firebaseUID and email, both matching in the database. SO we need to pass down that info thru props from account.jsx
         // token = response.id
         const baseURL = 'https://paulsfootpalace.com/largess-app/customer-new.php';
-        // console.log(this.state);
         request.post(`${baseURL}`)
+        // set the Content-Type so that
           .set('Content-Type', 'application/x-www-form-urlencoded')
           .send(
           {
@@ -103,11 +114,37 @@ const PaymentForm = React.createClass({
     } else {
       return (<form onSubmit={this.onSubmit} >
         <span>{ this.state.paymentError }</span><br />
-        <input id="ccInfo" type="text" data-stripe="number" placeholder="Credit Card number" /><br />
-        <input className="input-date" type="text" data-stripe="exp-month" placeholder="MM" />
-        <input className="input-date" type="text" data-stripe="exp-year" placeholder="YY" />
-        <input className="input-cvc" type="text" data-stripe="cvc" placeholder="CVC" />
-        <input className="button button-ccinfo" disabled={this.state.submitDisabled} type="submit" value="Save CC Info" />
+        <input
+          id="ccInfo"
+          type="text"
+          data-stripe="number"
+          placeholder="Credit Card number"
+        />
+        <br />
+        <input
+          className="input-date"
+          type="text"
+          data-stripe="exp-month"
+          placeholder="MM"
+        />
+        <input
+          className="input-date"
+          type="text"
+          data-stripe="exp-year"
+          placeholder="YY"
+        />
+        <input
+          className="input-cvc"
+          type="text"
+          data-stripe="cvc"
+          placeholder="CVC"
+        />
+        <input
+          className="button button-ccinfo"
+          disabled={this.state.submitDisabled}
+          type="submit"
+          value="Save CC Info"
+        />
       </form>);
     }
   },

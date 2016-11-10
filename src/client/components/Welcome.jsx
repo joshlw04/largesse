@@ -25,7 +25,11 @@ class Welcome extends Component {
     return (
       <div id="welcome-main">
         <div id="welcome-icon">
-          <img className="logo" src="images/largess-logo.png" alt="" />
+          <img
+            className="logo"
+            src="images/largess-logo.png"
+            alt=""
+          />
         </div>
         <br />
         <h1>Largess</h1>

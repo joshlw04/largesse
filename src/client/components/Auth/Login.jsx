@@ -40,7 +40,10 @@ class Login extends Component {
     return (
       <div>
         <div className="navbar">
-          <Link className="back-button" to="/"><i className="ion-ios-arrow-back"></i> Back</Link>
+          <Link
+            className="back-button"
+            to="/"><i
+              className="ion-ios-arrow-back"></i> Back</Link>
         </div>
         <h1>Sign In</h1>
 
@@ -63,7 +66,8 @@ class Login extends Component {
           </div>
           <button
             className="button sign-in"
-            onTouchStart={this.handleLoginSubmit} onClick={this.handleLoginSubmit}
+            onTouchStart={this.handleLoginSubmit}
+            onClick={this.handleLoginSubmit}
           >Sign In</button>
         </div>
       </div>
